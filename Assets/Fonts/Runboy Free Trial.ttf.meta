@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ab1d3beb544d2cd4395e4daf0d62b500
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Runboy Free Trial
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d0e4c9b5668ca8d4892cf85e0cb4d564, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
