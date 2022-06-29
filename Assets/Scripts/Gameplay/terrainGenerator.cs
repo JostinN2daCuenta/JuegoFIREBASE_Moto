@@ -81,7 +81,7 @@ public class terrainGenerator : MonoBehaviour
     IEnumerator increaseVelocity()
     {
         velocidadMovimiento += 10;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10);
         StartCoroutine(increaseVelocity());
     }
 }

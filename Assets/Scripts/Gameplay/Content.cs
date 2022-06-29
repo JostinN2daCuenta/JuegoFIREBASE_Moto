@@ -15,7 +15,6 @@ public class Content : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(this.transform.TransformPoint(this.transform.position));
         if (this.transform.TransformPoint(this.transform.position).z < -20)
         {
             referencePool.newPositionForBlock(this);
