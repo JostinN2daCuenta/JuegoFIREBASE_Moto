@@ -2,6 +2,7 @@
   "project_info": {
     "project_number": "79073074358",
     "project_id": "prototypevromvrommobile",
+    "firebase_url": "https://prototypevromvrommobile-default-rtdb.firebaseio.com/",
     "storage_bucket": "prototypevromvrommobile.appspot.com"
   },
   "client": [

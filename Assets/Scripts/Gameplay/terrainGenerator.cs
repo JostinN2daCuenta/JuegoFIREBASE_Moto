@@ -6,14 +6,26 @@ public class terrainGenerator : MonoBehaviour
 {
     public List<Content> pool;
     public Content current;
+    public float velocidadMovimiento;
     void Start()
     {
-        
+        StartCoroutine(increaseVelocity());
+        foreach (Content item in pool)
+        {
+            item.referencePool = this;
+        }
+        current = pool[pool.Count - 1];
     }
 
+    public void newPositionForBlock(Content input)
+    {
+        input.gameObject.transform.position = current.pivotCreationNext.transform.position;
+        current = input;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        this.transform.position -= this.transform.forward * Time.deltaTime * velocidadMovimiento;
+        /*if (Input.GetKeyDown(KeyCode.A))
         {
             Content temp = Instantiate(pool[Random.Range(0, pool.Count)]);
             temp.transform.position = current.pivotCreationNext.position;
@@ -63,6 +75,13 @@ public class terrainGenerator : MonoBehaviour
             }
 
             current = temp;
-        }
+        }*/
+    }
+
+    IEnumerator increaseVelocity()
+    {
+        velocidadMovimiento += 10;
+        yield return new WaitForSeconds(2);
+        StartCoroutine(increaseVelocity());
     }
 }
