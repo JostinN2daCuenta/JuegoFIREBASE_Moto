@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
+    public PlayerController playerController;
     public Pool myPool;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
- 
-    }
 
     public void setObjectPool(Pool myPool) 
     {

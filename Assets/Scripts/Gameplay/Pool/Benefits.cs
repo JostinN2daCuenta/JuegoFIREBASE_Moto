@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : PoolObject
+public class Benefits : PoolObject
 {
     public float velocidad;
 
     void Update()
     {
-        devolverAlPool();
         behaviour();
+        devolverAlPool();
     }
 
-    public void behaviour() 
+    public void behaviour()
     {
-        this.transform.position += this.transform.forward*Time.deltaTime*velocidad; 
+        this.transform.position += this.transform.forward * Time.deltaTime * velocidad;
     }
 
-    public void devolverAlPool() 
+    public void devolverAlPool()
     {
         if (this.transform.position.z < -1)
         {
@@ -27,9 +27,9 @@ public class Obstacle : PoolObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            playerController.add1score();
+            playerController.add1turbo();
             myPool.guardarPoolObject(this);
         }
     }
