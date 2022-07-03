@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     public bool inGame;
     public bool gameOverVariable;
 
+
+
+
+    /*PLAYER ID  test*/
+    public int PlayerID;
+
     private void Awake()
     {
         gameOverVariable = false;
@@ -37,6 +43,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        /*PLAYER ID  test*/
+        if (PlayerPrefs.GetInt("ID") == 0) 
+        {
+            setPlayerID();
+        }
+        PlayerID = getPlayerID();
+
+
+
         inGame = false;
     }
     void Update()
@@ -72,6 +87,18 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+
+    /*PLAYER ID  test*/
+    public void setPlayerID() 
+    {
+        PlayerPrefs.SetInt("ID", Random.Range(0, 100));
+    }
+
+    public int getPlayerID()
+    {
+        return PlayerPrefs.GetInt("ID");
     }
 
 }

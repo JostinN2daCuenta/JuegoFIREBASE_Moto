@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &280817189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280817188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b7d4463416303d4fb81d37d3487dba0, type: 3}
   m_Name: 
@@ -4209,7 +4209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3731751145014912540, guid: e9e63cfd28e27ac4abc7d40990673083, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3731751145014912541, guid: e9e63cfd28e27ac4abc7d40990673083, type: 3}
       propertyPath: m_Pivot.x
@@ -7861,9 +7861,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5761012eebd5424ba6bc603a8dc1676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrayDatos: []
   gameoverScreenGameObject: {fileID: 6952890765340840116}
   playerControllerReference: {fileID: 5776328101521387209}
   SceneControllerReference: {fileID: 710355485}
+  dataBaseManager: {fileID: 280817189}
   kilometrosUI: {fileID: 6384960406967087299}
   coinsUI: {fileID: 5361919847459976035}
   kilometrosUI_record: {fileID: 2214759762012799258}

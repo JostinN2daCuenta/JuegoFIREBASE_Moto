@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class UserController
 {
-    public static int id;
-    public string nickName;
-    public float score;
+    public int id;
+    public float kilometros;
+    public int coins;
 
-    public UserController()
+    public UserController(int id, float kilometrosRecord, int coinsRecord)
     {
-        if (id == 0) 
-        {
-            id = Random.Range(0, 1000);
-        }
+        this.id = id;
+        this.kilometros = kilometrosRecord;
+        this.coins = coinsRecord;
     }
 }

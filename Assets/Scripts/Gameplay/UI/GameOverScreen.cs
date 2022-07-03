@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameOverScreen : MonoBehaviour
 {
+    public float[] arrayDatosPlayer;
     /*GameOvewrScreen*/
     public GameObject gameoverScreenGameObject;
     public PlayerController playerControllerReference;
     public SceneMovement SceneControllerReference;
+    public DataBaseManager dataBaseManager;
 
 
 
@@ -21,18 +24,25 @@ public class GameOverScreen : MonoBehaviour
 
     private void Start()
     {
+        arrayDatosPlayer = new float[2];
         GameOverEvent.eventGameOver += llenarCamposEstadisticas;
     }
 
+    private void Update()
+    {
 
+    }
     public void llenarCamposEstadisticas()
     {
+        dataBaseManager.sendData(SceneControllerReference.kilometros, playerControllerReference.coins);
+
         gameoverScreenGameObject.gameObject.SetActive(true);
+
         int kilometrosNormal = (int)SceneControllerReference.kilometros;
         int coinsNormal = playerControllerReference.coins;
 
-        int kilometrosNormalRecord = 555;
-        int coinsNormalRecord = 23;
+        int kilometrosNormalRecord = (int)dataBaseManager.kilometosRecord;
+        int coinsNormalRecord = (int)dataBaseManager.coinsRecord;
 
 
         updateTexts(kilometrosNormal, coinsNormal, kilometrosNormalRecord, coinsNormalRecord);
