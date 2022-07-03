@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public float velocidad;
     public float velocidad2;
 
+    public float tiempoEntreTurbos = 5f;
+
 
     public MovementArrow buttonControlReference;
     public UIController UIReference;
@@ -24,11 +26,23 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         switchControlReference = UIReference.switchControl_;
+        StartCoroutine("agregarTurbo");
     }
-
+    IEnumerator agregarTurbo()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(tiempoEntreTurbos);
+            add1turbo();
+        }
+    }
     void Update()
     {
-        if (!GameManager.instance.gameOverVariable) 
+        if (this.transform.position.x < 36)
+            this.transform.position += new Vector3(0.002f,0,0);
+        if(this.transform.position.x > 47)
+            this.transform.position += new Vector3(-0.002f, 0, 0);
+        if (!GameManager.instance.gameOverVariable && this.transform.position.x > 36 && this.transform.position.x<47) 
         {
             Vector3 movimiento = this.transform.right * velocidad * Time.deltaTime;
             if (Input.GetKey(KeyCode.A))

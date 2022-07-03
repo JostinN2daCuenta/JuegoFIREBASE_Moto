@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 
     public GameObject CurrentMainMenu;
     public bool inGame;
+    bool isPaused = false;
 
     void Start()
     {
@@ -34,7 +35,19 @@ public class MenuManager : MonoBehaviour
             inGame = true;
         }
     }
-
+    public void Pause()
+    {
+        if(isPaused)
+        {
+            isPaused = false;
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            isPaused = true;
+            Time.timeScale = 0f;
+        }
+    }
     public void MenuManagerStart() 
     {
         MainMenu1.gameObject.SetActive(false);

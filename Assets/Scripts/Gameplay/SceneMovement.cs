@@ -18,7 +18,7 @@ public class SceneMovement : MonoBehaviour
         if (!GameManager.instance.gameOverVariable) 
         {
             kilometros += Time.deltaTime * velocidadMovimiento / 100;
-            kilometrosText.text = kilometros.ToString() + " km";
+            kilometrosText.text = kilometros.ToString("0.##") + " km";
             this.transform.position -= this.transform.forward * Time.deltaTime * velocidadMovimiento;
         }
         
