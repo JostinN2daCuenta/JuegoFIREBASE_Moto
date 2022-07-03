@@ -12,19 +12,15 @@ public class DataBaseManager : MonoBehaviour
         test();
     }
 
-    void Update()
-    {
-        
-    }
 
     public void test() 
     {
         UserController user = new UserController();
-        user.id = Random.Range(0, 9999);
+        UserController.id = Random.Range(0, 9999);
         user.nickName = "pepe";
         user.score = 0;
         string json = JsonUtility.ToJson(user);
-        reference.Child("User").Child(user.id.ToString()).SetRawJsonValueAsync(json).ContinueWith(
+        reference.Child("User").Child(UserController.id.ToString()).SetRawJsonValueAsync(json).ContinueWith(
             task =>
             {
                 if (task.IsCompleted)

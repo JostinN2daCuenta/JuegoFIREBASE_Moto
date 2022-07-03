@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class UserController
 {
-    public int id;
+    public static int id;
     public string nickName;
     public float score;
+
+    public UserController()
+    {
+        if (id == 0) 
+        {
+            id = Random.Range(0, 1000);
+        }
+    }
 }

@@ -8,7 +8,6 @@ public class TransitionFade : MonoBehaviour
     void Start()
     {
         anim = this.GetComponent<Animator>();
-        LoadSceneEvent.eventsBeforeChangeScene += startTransition;
     }
     public void startTransition() 
     {

@@ -1,40 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] int score;
-    [SerializeField] int turbo;
+    /*[SerializeField] TextMeshProUGUI x;
+    [SerializeField] TextMeshProUGUI y;
+    [SerializeField] TextMeshProUGUI z;*/
+
+    public int score;
+    public int turbo;
+    public int coins;
     private Vector3 aceleration;
     public float velocidad;
     public float velocidad2;
 
-    public SwitchControl switchControlReference;
+
     public MovementArrow buttonControlReference;
+    public UIController UIReference;
+    SwitchControl switchControlReference;
+
+    private void Start()
+    {
+        switchControlReference = UIReference.switchControl_;
+    }
 
     void Update()
     {
+        if (!GameManager.instance.gameOverVariable) 
+        {
+            Vector3 movimiento = this.transform.right * velocidad * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A))
+            {
+                this.transform.position -= movimiento;
+            }
 
-        if (switchControlReference.controls.Equals(Control.acelerometer))
-        {
-            acelerometerControl();
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                this.transform.position += movimiento;
+            }
+
+#if UNITY_ANDROID
+            if (switchControlReference.controls.Equals(Control.acelerometer))
+            {
+                acelerometerControl();
+            }
+            if (switchControlReference.controls.Equals(Control.arrows))
+            {
+                ArrowsControl();
+            }
+#endif
         }
-        if (switchControlReference.controls.Equals(Control.arrows))
-        {
-            ArrowsControl();
-        }
+
+
     }
     public void acelerometerControl()
     {
         aceleration = new Vector3(Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
-        /*text1.text = "X: " + aceleration.x.ToString();
-        text2.text = "Y: " + aceleration.y.ToString();
-        text3.text = "Z: " + aceleration.z.ToString();*/
+        /*x.text = "X: " + aceleration.x.ToString();
+        y.text = "Y: " + aceleration.y.ToString();
+        z.text = "Z: " + aceleration.z.ToString();*/
 
-        if (Mathf.Abs(aceleration.x) > 0.05f && Mathf.Abs(aceleration.z) > 0.05f)
+        if (Mathf.Abs(aceleration.x) > 0.05f)
         {
-            Vector3 movimiento = this.transform.right * velocidad2 * aceleration.z * Time.deltaTime;
+            Vector3 movimiento = this.transform.right * velocidad2 * aceleration.x * Time.deltaTime;
             this.transform.position += movimiento;
         }
     }
@@ -50,9 +81,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void add1Coin() 
+    {
+        coins++;
+        UIReference.mofifyCoinText(coins);
+    }
     public void add1turbo() 
     {
         turbo++;
+        UIReference.llenarTurbo();
     }
     
     public void add1score() 

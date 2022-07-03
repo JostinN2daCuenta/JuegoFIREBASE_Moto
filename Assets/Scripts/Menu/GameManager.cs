@@ -9,15 +9,21 @@ public class LoadSceneEvent
     public static System.Action eventsAfterChangeScene;
 }
 
+public class GameOverEvent
+{
+    public static System.Action eventGameOver;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public string nameScene;
     public bool inGame;
+    public bool gameOverVariable;
 
     private void Awake()
     {
-        
+        gameOverVariable = false;
         if (instance == null)
         {
             instance = this;
@@ -35,23 +41,33 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) 
-        {
-            loadNextScene();
-        }
+
     }
 
+    public void gameOver() 
+    {
+        gameOverVariable = true;
+        GameOverEvent.eventGameOver?.Invoke();
+        GameOverEvent.eventGameOver = null;
+    }
     public void loadNextScene() 
     {
-        StartCoroutine(asycLoadScene());
+        StartCoroutine(asycLoadScene(SceneManager.GetActiveScene().buildIndex+1));
     }
-    IEnumerator asycLoadScene() 
+
+    public void restartScene()
     {
-        LoadSceneEvent.eventsBeforeChangeScene?.Invoke();
+        gameOverVariable = false;
+        StartCoroutine(asycLoadScene(SceneManager.GetActiveScene().buildIndex));
+    }
+
+
+    IEnumerator asycLoadScene(int i) 
+    {
         yield return new WaitForSeconds(1);
 
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        AsyncOperation op = SceneManager.LoadSceneAsync(i);
         while (!op.isDone)
         {
             yield return null;

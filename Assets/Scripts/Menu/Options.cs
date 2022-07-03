@@ -13,16 +13,17 @@ public class Options : MonoBehaviour
     public Image brilloImage;
     void Start()
     {
-        menuManager = this.transform.parent.gameObject.GetComponent<MenuManager>();
+        menuManager = GetComponent<MenuManager>();
         volume.value = PlayerPrefs.GetFloat("Volume");
+
+
+        updateBrilloImagen(PlayerPrefs.GetFloat("Brillo"));
         brillo.value = PlayerPrefs.GetFloat("Brillo");
-        brilloImage.color = new Color(brilloImage.color.r, brilloImage.color.g, brilloImage.color.b, Mathf.Clamp(1 - brillo.value,0.3f,1));//ta raro
     }
 
     public void closeMenu() 
     {
         menuManager.CurrentMainMenu.gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
     }
     public void setVolume() 
     {
@@ -31,7 +32,13 @@ public class Options : MonoBehaviour
 
     public void setBrightness()
     {
-        PlayerPrefs.SetFloat("Brillo", brillo.value);
-        brilloImage.color = new Color(brilloImage.color.r, brilloImage.color.g, brilloImage.color.b, Mathf.Clamp(1 - brillo.value, 0.3f, 1));
+        updateBrilloImagen(brillo.value);
+    }
+
+    public void updateBrilloImagen(float a) //1 es brillo max
+    {
+        PlayerPrefs.SetFloat("Brillo", a);
+        float alpha = 1 - a;
+        brilloImage.color = new Color(brilloImage.color.r, brilloImage.color.g, brilloImage.color.b, Mathf.Clamp(alpha, 0.0f, 0.7f));
     }
 }
