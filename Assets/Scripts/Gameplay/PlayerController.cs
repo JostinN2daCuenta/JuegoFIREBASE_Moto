@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float velocidad;
     public float velocidad2;
 
-    public float tiempoEntreTurbos = 5f;
+    public float tiempoEntreTurbos;
 
 
     public MovementArrow buttonControlReference;

@@ -13,6 +13,7 @@ public class DataBaseManager : MonoBehaviour
     public bool existeUsuario;
     public float kilometosRecord;
     public float coinsRecord;
+    public  NotificationManager notificationsManager;
 
     void Start()
     {
@@ -50,10 +51,12 @@ public class DataBaseManager : MonoBehaviour
         {
             if (kilometosRecord < kilometros) 
             {
+                notificationsManager.sendNoti("Kilometros");
                 kilometosRecord = kilometros;
             }
             if (coinsRecord < coins) 
             {
+                notificationsManager.sendNoti("Monedas obtenidas");
                 coinsRecord = coins;
             }
         }

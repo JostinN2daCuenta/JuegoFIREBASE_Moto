@@ -76,6 +76,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(asycLoadScene(SceneManager.GetActiveScene().buildIndex));
     }
 
+    public void backToMenu()
+    {
+        gameOverVariable = false;
+        StartCoroutine(asycLoadScene(0));
+    }
+
 
     IEnumerator asycLoadScene(int i) 
     {

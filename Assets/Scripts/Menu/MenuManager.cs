@@ -18,6 +18,11 @@ public class MenuManager : MonoBehaviour
         alreadyInGame();
         MenuManagerStart();
     }
+    public void backToMenu()
+    {
+        GameManager.instance.backToMenu();
+    }
+
     public void onClickStartGame() 
     {
         GameManager.instance.loadNextScene();

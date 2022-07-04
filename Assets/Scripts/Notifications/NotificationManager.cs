@@ -9,16 +9,6 @@ public class NotificationManager : MonoBehaviour
     void Start()
     {
         channelNregisterCreation();
-
-        AndroidNotification notificationPrueba = new AndroidNotification()
-        {
-            Title = "TAN GOZU",
-            Text = "Ganaste 1000$ y un auto nissan, recogelos en la bodega mas cerca",
-            SmallIcon = "default",
-            LargeIcon = "default",
-            FireTime = System.DateTime.Now
-        };
-        AndroidNotificationCenter.SendNotification(notificationPrueba, notificationChannel.Id);
     }
 
     public void channelNregisterCreation() 
@@ -32,5 +22,18 @@ public class NotificationManager : MonoBehaviour
         };
 
         AndroidNotificationCenter.RegisterNotificationChannel(notificationChannel);
+    }
+
+    public void sendNoti(string message) 
+    {
+        AndroidNotification notificationPrueba = new AndroidNotification()
+        {
+            Title = "TAN GOZU",
+            Text = string.Format("Superaste tu record en {0}, bien ahí papu.", message),
+            SmallIcon = "default",
+            LargeIcon = "default",
+            FireTime = System.DateTime.Now
+        };
+        AndroidNotificationCenter.SendNotification(notificationPrueba, notificationChannel.Id);
     }
 }
